@@ -34,7 +34,7 @@ angular.module('flapperNews', ['ui.router'])
                 };
 
                 o.getAll = function () {
-                    return $http.get().success(function (data) {
+                    return $http.get('/posts').success(function (data) {
                         angular.copy(data, o.posts);
                     });
                 };
