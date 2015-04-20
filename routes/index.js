@@ -93,7 +93,7 @@ router.param('post', function (req, res, next, id) {
 router.param('comment', function (req, res, next, id) {
     var query = Comment.findById(id);
 
-    quiery.exec(function (err, comment) {
+    query.exec(function (err, comment) {
         if (err) {
             return next(err);
         }
@@ -106,7 +106,13 @@ router.param('comment', function (req, res, next, id) {
 });
 
 router.put('/posts/:post/comments/:comment/upvote', function (req, res, next) {
+    req.comment.upvote(function (err, comment) {
+        if (err) {
+            return next(err);
+        }
 
+        res.json(comment);
+    });
 });
 
 module.exports = router;
